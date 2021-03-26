@@ -1,0 +1,47 @@
+name: Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install Serverless Framework
+        run: npm i -g serverless
+
+      - name: Authenticate Serverless with AWS
+        run: sls config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
+
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_NODE_ENV: production
+          envkey_CONTENTSTACK_API_ENVIRONMENT: ${{ secrets.CONTENTSTACK_API_ENVIRONMENT }}
+          envkey_CONTENTSTACK_API_KEY: ${{ secrets.CONTENTSTACK_API_KEY }}
+          envkey_CONTENTSTACK_API_SECRET: ${{ secrets.CONTENTSTACK_API_SECRET }}
+          envkey_CONTENTSTACK_API_URL: ${{ secrets.CONTENTSTACK_API_URL }}
+          envkey_ECONOMICS_OBJECT_KEY: ${{ secrets.ECONOMICS_OBJECT_KEY }}
+          envkey_ECONOMICS_BUCKET_NAME: ${{ secrets.ECONOMICS_BUCKET_NAME }}
+          envkey_IEX_CLOUD_API_TOKEN: ${{ secrets.IEX_CLOUD_API_TOKEN }}
+          envkey_IEX_CLOUD_API_URL: ${{ secrets.IEX_CLOUD_API_URL }}
+          envkey_SITE_URL: ${{ secrets.SITE_URL }}
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Deploy
+        run: sls deploy -s live
