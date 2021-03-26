@@ -13,8 +13,8 @@ export type Commodities = {
 }
 
 export default async (timestamp: number, commodities: Commodities = {}): Promise<Commodities> => {
-    const baseUrl = process.env.ECONOMICS_API_URL;
-    const token = process.env.ECONOMICS_API_TOKEN;
+    const baseUrl = process.env.IEX_CLOUD_API_URL;
+    const token = process.env.IEX_CLOUD_API_TOKEN;
 
     for (const index in symbols) {
         const symbol = symbols[index];

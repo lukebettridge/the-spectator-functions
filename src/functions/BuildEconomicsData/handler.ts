@@ -26,7 +26,7 @@ const BuildEconomicsData: Handler<ScheduledEvent, ManagedUpload.SendData> = asyn
     timestamp
   }
 
-  const bucket = process.env.BUCKET_NAME;
+  const bucket = process.env.ECONOMICS_BUCKET_NAME;
   const objectKey = process.env.ECONOMICS_OBJECT_KEY;
   return upload(bucket, JSON.stringify(data), objectKey, {
     contentType: 'application/json'

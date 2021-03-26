@@ -17,8 +17,8 @@ export default async (timestamp: number, symbols: string[]): Promise<Stocks> => 
         return stocks;
     }
 
-    const baseUrl = process.env.ECONOMICS_API_URL;
-    const token = process.env.ECONOMICS_API_TOKEN;
+    const baseUrl = process.env.IEX_CLOUD_API_URL;
+    const token = process.env.IEX_CLOUD_API_TOKEN;
 
     const requestUrl = `${baseUrl}/stock/market/batch?token=${token}&symbols=${symbols.join(',')}&types=quote`;
     const response = await fetch(requestUrl, {

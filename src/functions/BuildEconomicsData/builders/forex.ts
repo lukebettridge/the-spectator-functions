@@ -13,8 +13,8 @@ export type Forex = {
 }
 
 export default async (timestamp: number, forex: Forex = {}): Promise<Forex> => {
-    const baseUrl = process.env.ECONOMICS_API_URL;
-    const token = process.env.ECONOMICS_API_TOKEN;
+    const baseUrl = process.env.IEX_CLOUD_API_URL;
+    const token = process.env.IEX_CLOUD_API_TOKEN;
 
     const requestUrl = `${baseUrl}/fx/latest?token=${token}&symbols=${symbols.join(',')}`;
     const response = await fetch(requestUrl, {

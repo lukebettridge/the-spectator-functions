@@ -13,8 +13,8 @@ export type Crypto = {
 }
 
 export default async (timestamp: number, crypto: Crypto = {}): Promise<Crypto> => {
-    const baseUrl = process.env.ECONOMICS_API_URL;
-    const token = process.env.ECONOMICS_API_TOKEN;
+    const baseUrl = process.env.IEX_CLOUD_API_URL;
+    const token = process.env.IEX_CLOUD_API_TOKEN;
 
     for (const index in symbols) {
         const symbol = symbols[index];

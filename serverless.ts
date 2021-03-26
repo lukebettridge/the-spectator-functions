@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
       {
         Effect: 'Allow',
         Action: ['s3:*'],
-        Resource: 'arn:aws:s3:::${env:BUCKET_NAME}/${env:ECONOMICS_OBJECT_KEY}'
+        Resource: 'arn:aws:s3:::${env:ECONOMICS_BUCKET_NAME}/${env:ECONOMICS_OBJECT_KEY}'
       }
     ],
     lambdaHashingVersion: '20201221'
