@@ -33,7 +33,7 @@ const BuildEconomicsData: Handler<ScheduledEvent, ManagedUpload.SendData> = asyn
     contentType: 'application/json'
   });
 
-  await invalidate([`/${objectKey}`])
+  await invalidate([`/${objectKey}`]);
 
   return result
 }
