@@ -2,6 +2,7 @@ import 'source-map-support/register';
 
 import { Handler, ScheduledEvent } from 'aws-lambda';
 import { ManagedUpload } from 'aws-sdk/clients/s3';
+import { invalidate } from '@libs/cloudfront';
 import { middyfy } from '@libs/lambda';
 import { upload } from '@libs/s3';
 
@@ -28,9 +29,13 @@ const BuildEconomicsData: Handler<ScheduledEvent, ManagedUpload.SendData> = asyn
 
   const bucket = process.env.ECONOMICS_BUCKET_NAME;
   const objectKey = process.env.ECONOMICS_OBJECT_KEY;
-  return upload(bucket, JSON.stringify(data), objectKey, {
+  const result = await upload(bucket, JSON.stringify(data), objectKey, {
     contentType: 'application/json'
   });
+
+  await invalidate([`/${objectKey}`])
+
+  return result
 }
 
 export const main = middyfy(BuildEconomicsData);

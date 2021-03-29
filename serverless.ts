@@ -32,6 +32,11 @@ const serverlessConfiguration: AWS = {
         Effect: 'Allow',
         Action: ['s3:*'],
         Resource: 'arn:aws:s3:::${env:ECONOMICS_BUCKET_NAME}/${env:ECONOMICS_OBJECT_KEY}'
+      },
+      {
+        Effect: 'Allow',
+        Action: ['cloudfront:CreateInvalidation'],
+        Resource: 'arn:aws:cloudfront::${env:AWS_ACCOUNT_ID}:distribution/${env:DISTRIBUTION_ID}'
       }
     ],
     lambdaHashingVersion: '20201221'
