@@ -8,9 +8,7 @@ const parseEconomicsHub = (data: any): EconomicsHub => {
     let stocks: string[] = [];
 
     if (data) {
-        if (data.ticker) {
-            stocks = data.ticker.stocks || [];
-        }
+        stocks = data.stocks || [];
     }
     return { stocks }
 }
