@@ -27,10 +27,12 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_NODE_ENV: development
+          envkey_AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
           envkey_CONTENTSTACK_API_ENVIRONMENT: ${{ secrets.CONTENTSTACK_API_ENVIRONMENT }}
           envkey_CONTENTSTACK_API_KEY: ${{ secrets.CONTENTSTACK_API_KEY }}
           envkey_CONTENTSTACK_API_SECRET: ${{ secrets.CONTENTSTACK_API_SECRET }}
           envkey_CONTENTSTACK_API_URL: ${{ secrets.CONTENTSTACK_API_URL }}
+          envkey_DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
           envkey_ECONOMICS_OBJECT_KEY: ${{ secrets.ECONOMICS_OBJECT_KEY }}
           envkey_ECONOMICS_BUCKET_NAME: ${{ secrets.ECONOMICS_BUCKET_NAME }}
           envkey_IEX_CLOUD_API_TOKEN: ${{ secrets.IEX_CLOUD_API_TOKEN }}
